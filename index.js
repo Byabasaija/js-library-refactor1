@@ -13,12 +13,9 @@ const bookList = document.getElementById('book-list');
 const addBook = document.getElementById('submit');
 
 
-function Book(author, title, pages, hasRead) {
-  this.author = author;
-  this.title = title;
-  this.pages = pages;
-  this.hasRead = hasRead;
-}
+const bookFactory = (author, title, pages, hasRead) => ({
+  author, title, pages, hasRead,
+});
 
 function addBookToLibrary(book) {
   myLibrary.push(book);
@@ -80,7 +77,7 @@ addBook.addEventListener('click', () => {
   const title = document.getElementById('title').value;
   const author = document.getElementById('author').value;
   const pages = document.getElementById('pages').value;
-  const book = new Book(author, title, pages, false);
+  const book = bookFactory(author, title, pages, false);
   addBookToLibrary(book);
   const bookCard = createBookCard(bookList, book);
   createButton(bookCard, 'Delete');
